@@ -62,7 +62,24 @@ kubectl create -f consul.yaml
 
 ```bash
 kubectl get pods -n consul
+```
+```
+NAME                          READY   STATUS    RESTARTS   AGE
+ambassador-6ccb884b4b-7s9g9   1/1     Running   0          151m
+ambassador-6ccb884b4b-flsp5   1/1     Running   0          151m
+ambassador-6ccb884b4b-wnchn   1/1     Running   0          151m
+consul-0                      1/1     Running   0          170m
+consul-1                      1/1     Running   0          170m
+consul-2                      1/1     Running   0          170m
+qotm-59f9888996-f9jp4         1/1     Running   0          148m
+
+```
+```bash
 kubectl get statefulset -n consul 
+```
+```
+NAME     READY   AGE
+consul   3/3     172m
 ```
 
 ## Accessing web UI 
@@ -83,3 +100,6 @@ I use ambassador to expose consul ui,but in consul.yaml i have annotated. just l
 hwo to use ambassador you can learn it by https://www.getambassador.io/docs
 
 and you can  learn it by my blog https://www.cnblogs.com/cuishuai/p/9806007.html
+
+visit ui use : http://AMBASSADOR_IP:NODE_PORT/ui
+
