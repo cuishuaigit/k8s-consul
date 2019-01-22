@@ -15,7 +15,7 @@ Deploy consul server cluster in kubernetes
 
 Clone repo
 
-'''bash
+'''
 git clone https://github.com/cuishuaigit/k8s-consul.git 
 
 cd k8s-consul 
@@ -25,7 +25,7 @@ cd k8s-consul
 
 RPC communication between each Consul member will be encrypted using TLS.
 
-'''bash 
+'''
 cd ssl
 
 cfssl gencert -initca ca-csr.json | cfssljson -bare ca 
@@ -36,14 +36,14 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=defa
 
 ### Generate the Consul Gossip Entcryption key 
 
-'''bash
+'''
 GOSSIP_ENCRYPTION_KEY=$(consul keygen)
 
 '''
 
 ### Create Consul Secret 
 
-'''bash
+'''
 kubectl create secret generic consul \
 			--from-literal="gossip-encryption-key=${GOSSIP_ENCRYPTION_KEY}" \
 			--from-file=ca.pem \
@@ -55,7 +55,7 @@ kubectl create secret generic consul \
 
 ### Create namesapce and rbac secret and configmap consul(headless service and statefulset)
 
-'''bash
+'''
 cd k8s-consul 
 
 kubectl create -f consul-namespace.yaml -f consul-rbac.yaml 
@@ -74,7 +74,7 @@ kubectl create -f consul.yaml
 
 ### Vertification
 
-'''bash
+'''
 kubectl get pods -n consul
 kubectl get statefulset -n consul 
 '''
